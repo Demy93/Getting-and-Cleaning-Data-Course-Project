@@ -35,9 +35,9 @@ y_merged_descriptive <- merge(y_merged, activities)
 
 ### Join the subjects, activity and measurements data sets and write csv
 data1 <- cbind(subject_merged, y_merged_descriptive["activity_label"], x_merged_selected)
-write.csv(data1, "dataset1_mean_std_measurements.csv")
+write.table(data1, "dataset1_mean_std_measurements.txt", row.names = FALSE)
 
 ### Average of each variable for each subject-activity pair and write csv
 data2 <- melt(data1, id=c("subject_id", "activity_label"))
 data3 <- dcast(data2, activity_label + subject_id ~ variable, mean)
-write.csv(data3, "dataset2_average_activity_subject_pair.csv")
+write.table(data3, "dataset2_average_activity_subject_pair.txt", row.names = FALSE)
